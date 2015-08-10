@@ -1,0 +1,74 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-10 21:00+0300\n"
+"PO-Revision-Date: 2015-08-10 21:37+0200\n"
+"Last-Translator: Yehuda Deutsch <yeh@uda.co.il>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+msgid "Maagar.IM"
+msgstr "מאגר.ים"
+
+msgid "Name"
+msgstr "שם"
+
+msgid "Owner"
+msgstr "בעלים"
+
+msgid "Status"
+msgstr "סטטוס"
+
+msgid "Repositories"
+msgstr "מאגרי מידע"
+
+msgid "Repository"
+msgstr "מאגר מידע"
+
+msgid "Page"
+msgstr "עמוד"
+
+msgid "of"
+msgstr "מתוך"
+
+msgid "Previous"
+msgstr "הקודם"
+
+msgid "Next"
+msgstr "הבא"
+
+msgid "Serial"
+msgstr "מספר סידורי"
+
+msgid "Date"
+msgstr "תאריך"
+
+msgid "Address"
+msgstr "כתובת"
+
+msgid "Address line 2"
+msgstr "כתובת שורה 2"
+
+msgid "Zip Code"
+msgstr "מיקוד"
+
+msgid "Original Owner info"
+msgstr "פרטי בעלים מהרשם"
+
+msgid "Street"
+msgstr "רחוב"
+
+msgid "House"
+msgstr "בית"
+
+msgid "P.O.B"
+msgstr "ת.ד."
+
+msgid "City"
+msgstr "עיר"

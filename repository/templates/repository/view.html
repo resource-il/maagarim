@@ -1,0 +1,73 @@
+{% extends 'site_base.html' %}{% load i18n %}
+
+{% block breadcrumb %}
+<li><a href="{% url 'repository:index' %}">{% trans "Repositories" %}</a></li>
+<li class="active">{{ repository.name }}</li>
+{% endblock %}
+
+{% block container %}
+    <div>
+        <div class="col-md-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">{{ repository }} <span
+                            class="label label-info">{{ repository.status }}</span></div>
+                </div>
+                <div class="panel-body">
+                    <dl>
+                        <dt>{% trans "Serial" %}:</dt>
+                        <dd>{{ repository.serial }}</dd>
+                        <dt>{% trans "Name" %}:</dt>
+                        <dd>{{ repository.name }}</dd>
+                        <dt>{% trans "Date" %}:</dt>
+                        <dd>{{ repository.date }}</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">{% trans "Original Owner info" %}</div>
+                </div>
+                <div class="panel-body">
+                    <dl>
+                        <dt>{% trans "Serial" %}:</dt>
+                        <dd>{{ repository.owner_serial }}</dd>
+                        <dt>{% trans "Name" %}:</dt>
+                        <dd>{{ repository.owner_name }}</dd>
+                        <dt>{% trans "Street" %}:</dt>
+                        <dd>{{ repository.street }}</dd>
+                        <dt>{% trans "House" %}:</dt>
+                        <dd>{{ repository.house }}</dd>
+                        <dt>{% trans "P.O.B" %}:</dt>
+                        <dd>{{ repository.pob }}</dd>
+                        <dt>{% trans "City" %}:</dt>
+                        <dd>{{ repository.city }}</dd>
+                        <dt>{% trans "Zip Code" %}:</dt>
+                        <dd>{{ repository.zip_code }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <a href="#">{{ repository.owner.name }}</a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <dl>
+                        <dt>{% trans "Serial" %}:</dt>
+                        <dd>{{ repository.owner.serial }}</dd>
+                        <dt>{% trans "Address" %}:</dt>
+                        <dd>{{ repository.owner.address }}</dd>
+                        <dt>{% trans "Address line 2" %}:</dt>
+                        <dd>{{ repository.owner.address_line2 }}</dd>
+                        <dt>{% trans "Zip Code" %}:</dt>
+                        <dd>{{ repository.owner.zip_code }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
