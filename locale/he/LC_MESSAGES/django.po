@@ -72,3 +72,6 @@ msgstr "ת.ד."
 
 msgid "City"
 msgstr "עיר"
+
+msgid "Repo name or Owner"
+msgstr "שם מאגר או בעלים"
