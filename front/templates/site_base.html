@@ -6,17 +6,15 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
+    <div class="container">
         {% include 'partials/nav.html' %}
-        <div id="site-container" class="container">
+        <div id="site-container">
             {% block breadcrumbs %}
                 <div>
-                    <div class="col-md-12">
-                        <ul class="breadcrumb">
-                            <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
-                            {% block breadcrumb %}{% endblock %}
-                        </ul>
-                    </div>
+                    <ul class="breadcrumb">
+                        <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+                        {% block breadcrumb %}{% endblock %}
+                    </ul>
                 </div>
             {% endblock %}
             {% block container %}{% endblock %}
