@@ -21,6 +21,7 @@ from django.views import static
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'front.views.home', name='home'),
+    url(r'^search/$', 'front.views.search', name='search'),
     url(r'^repository/', include('repository.urls', namespace='repository')),
     url(r'^assets/(.*)$', static.serve, {'document_root': settings.STATIC_ROOT}),
 ]
