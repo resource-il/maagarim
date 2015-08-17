@@ -39,19 +39,6 @@ class Owner(models.Model):
     def __str__(self):
         return self.name
 
-    def extended_name(self):
-        final_string = self.name
-        final_address = self.address
-        if final_address and self.zip_code:
-            final_address += ', ' + str(self.zip_code)
-
-        if final_string and final_address:
-            final_string += ' - ' + final_address
-
-        if not final_string:
-            final_string = _('None')
-        return final_string
-
 
 class Repository(models.Model):
     serial = models.BigIntegerField(verbose_name='Serial')

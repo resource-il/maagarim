@@ -11,6 +11,7 @@
             <tr>
                 <th>{% trans "Name" %}</th>
                 <th>{% trans "Owner" %}</th>
+                <th>{% trans "Marketing" %}</th>
                 <th>{% trans "Status" %}</th>
             </tr>
             </thead>
@@ -18,7 +19,18 @@
             {% for repository in repositories %}
                 <tr>
                     <td><a href="{% url 'repository:view' repository.id %}">{{ repository.name }}</a></td>
-                    <td>{{ repository.owner }}</td>
+                    <td>
+                        {% if repository.owner_id %}
+                            <a href="{% url 'repository:owner:view' repository.owner_id %}">{{ repository.owner }}</a>
+                        {% else %}
+                            {{ repository.owner_name }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if repository.marketing %}
+                            <i class="glyphicon glyphicon-ok-sign text-success"></i>
+                        {% endif %}
+                    </td>
                     <td>{{ repository.status }}</td>
                 </tr>
             {% endfor %}

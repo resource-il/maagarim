@@ -20,6 +20,9 @@ msgid "Name"
 msgstr "שם"
 
 msgid "Owner"
+msgstr "בעלי המאגר"
+
+msgid "Owners"
 msgstr "בעלים"
 
 msgid "Status"
@@ -75,3 +78,36 @@ msgstr "עיר"
 
 msgid "Repo name or Owner"
 msgstr "שם מאגר או בעלים"
+
+msgid "Reports"
+msgstr "דיווחים"
+
+msgid "Stats"
+msgstr "סטטיסטיקות"
+
+msgid "Suggested"
+msgstr "הצעות"
+
+msgid "Marketing"
+msgstr "דיוור"
+
+msgid "Add / Fix info"
+msgstr "הוספת / תיקון מידע"
+
+msgid "Violation reports"
+msgstr "דיווחי הפרות"
+
+msgid "Add info"
+msgstr "הוספת מידע"
+
+msgid "Fix info"
+msgstr "תיקון מידע"
+
+msgid "Report violation"
+msgstr "דיווח הפרה"
+
+msgid "Violation"
+msgstr "הפרה"
+
+msgid "Violations"
+msgstr "הפרות"

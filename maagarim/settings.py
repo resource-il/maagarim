@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'comment',
     'front',
     'oauth2_provider',
+    'spurl',
 )
 
 DAB_FIELD_RENDERER = 'django_admin_bootstrapped.renderers.BootstrapFieldRenderer'

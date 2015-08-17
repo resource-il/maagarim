@@ -1,0 +1,213 @@
+{% extends 'site_base.html' %}{% load i18n spurl %}
+
+{% block breadcrumb %}
+    <li><a href="{% url 'repository:owner:index' %}">{% trans "Owners" %}</a></li>
+    <li class="active">{{ owner.name }}</li>
+{% endblock %}
+
+{% block container %}
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">{{ owner }}</div>
+                </div>
+                <div class="panel-body">
+                    <dl>
+                        <dt>{% trans "Serial" %}:</dt>
+                        <dd>{{ owner.serial }}</dd>
+                        <dt>{% trans "Name" %}:</dt>
+                        <dd>{{ owner.name }}</dd>
+                        <dt>{% trans "Address" %}:</dt>
+                        <dd>{{ owner.address }}</dd>
+                        <dt>{% trans "Address line 2" %}:</dt>
+                        <dd>{{ owner.address_line2 }}</dd>
+                        <dt>{% trans "Zip Code" %}:</dt>
+                        <dd>{{ owner.zip_code }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        {% trans "Stats" %}
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <dl>
+                        <dt>{% trans "Repositories" %}:</dt>
+                        <dd>{{ repositories.paginator.count }}</dd>
+                        <dt>{% trans "Reports" %}:</dt>
+                        <dd>0</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Repositories #}
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        {% trans "Repositories" %}
+                        <span class="badge">{{ repositories.paginator.count }}</span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped table-responsive table-hover">
+                        <thead>
+                        <tr>
+                            <th>{% trans "Name" %}</th>
+                            <th>{% trans "Marketing" %}</th>
+                            <th>{% trans "Status" %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for repository in repositories %}
+                            <tr>
+                                <td><a href="{% url 'repository:view' repository.id %}">{{ repository.name }}</a></td>
+                                <td>
+                                    {% if repository.marketing %}
+                                        <i class="glyphicon glyphicon-ok-sign text-success"></i>
+                                    {% else %}
+                                        <i class="glyphicon glyphicon-minus-sign text-danger"></i>
+                                    {% endif %}
+                                </td>
+                                <td>{{ repository.status }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <nav>
+                        <ul class="pager">
+                            {% if repositories.has_previous %}
+                                <li class="previous">
+                                    <a href="{% spurl base=url set_query="repo_page={{ repositories.previous_page_number }}" %}">
+                                        <span aria-hidden="true">&rarr;</span> {% trans "Previous" %}
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            <li class="current">
+                                {% trans "Page" %} {{ repositories.number }} {% trans "of" %} {{ repositories.paginator.num_pages }}
+                            </li>
+
+                            {% if repositories.has_next %}
+                                <li class="next">
+                                    <a href="{% spurl base=url set_query="repo_page={{ repositories.next_page_number }}" %}">
+                                        {% trans "Next" %} <span aria-hidden="true">&larr;</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Suggested Repositories #}
+    {% if suggestions.paginator.count and request.user.is_staff %}
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            {% trans "Repositories" %}
+                            <span class="badge">{{ suggestions.paginator.count }}</span>
+                            <span class="label label-warning">{% trans "Suggested" %}</span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped table-responsive table-hover">
+                            <thead>
+                            <tr>
+                                <th>{% trans "Name" %}</th>
+                                <th>{% trans "Marketing" %}</th>
+                                <th>{% trans "Status" %}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for repository in suggestions %}
+                                <tr>
+                                    <td><a href="{% url 'repository:view' repository.id %}">{{ repository.name }}</a>
+                                    </td>
+                                    <td>
+                                        {% if repository.marketing %}
+                                            <i class="glyphicon glyphicon-ok-sign text-success"></i>
+                                        {% else %}
+                                            <i class="glyphicon glyphicon-minus-sign text-danger"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ repository.status }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <nav>
+                            <ul class="pager">
+                                {% if suggestions.has_previous %}
+                                    <li class="previous">
+                                        <a href="{% spurl base=url set_query="repo_sugg_page={{ suggestions.previous_page_number }}" %}">
+                                            <span aria-hidden="true">&rarr;</span> {% trans "Previous" %}
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                <li class="current">
+                                    {% trans "Page" %} {{ suggestions.number }} {% trans "of" %} {{ suggestions.paginator.num_pages }}
+                                </li>
+
+                                {% if suggestions.has_next %}
+                                    <li class="next">
+                                        <a href="{% spurl base=url set_query="repo_sugg_page={{ suggestions.next_page_number }}" %}">
+                                            {% trans "Next" %} <span aria-hidden="true">&larr;</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {# Actions #}
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#info-add-fix" role="tab" data-toggle="tab">{% trans "Add / Fix info" %}</a>
+                </li>
+                <li role="presentation">
+                    <a href="#violation-reports" role="tab" data-toggle="tab">{% trans "Violation reports" %}</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade in active" role="tabpanel" id="info-add-fix">
+                    <a class="btn btn-primary" role="button" data-toggle="collapse" href="#add-info-form">
+                        <i class="glyphicon glyphicon-plus">&nbsp;</i><span>{% trans "Add info" %}</span>
+                    </a>
+
+                    <div class="collapse" id="add-info-form">
+                        <form action="" method="post">
+                            <label for="add-info-subject">{% trans "Subject" %}</label>
+                            <input type="text" class="form-control" name="subject" id="add-info-subject">
+                            <label for="add-info-content">{% trans "Content" %}</label>
+                            <textarea class="form-control" name="content" id="add-info-content"></textarea>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-pane fade" role="tabpanel" id="violation-reports">Report violations</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

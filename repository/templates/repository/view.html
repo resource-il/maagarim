@@ -1,13 +1,13 @@
 {% extends 'site_base.html' %}{% load i18n %}
 
 {% block breadcrumb %}
-<li><a href="{% url 'repository:index' %}">{% trans "Repositories" %}</a></li>
-<li class="active">{{ repository.name }}</li>
+    <li><a href="{% url 'repository:index' %}">{% trans "Repositories" %}</a></li>
+    <li class="active">{{ repository.name }}</li>
 {% endblock %}
 
 {% block container %}
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-7">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="panel-title">{{ repository }} <span
@@ -24,11 +24,64 @@
                     </dl>
                 </div>
             </div>
-            <div class="panel panel-default">
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-info">
                 <div class="panel-heading">
-                    <div class="panel-title">{% trans "Original Owner info" %}</div>
+                    <div class="panel-title">
+                        {% if repository.owner_id %}
+                        <a href="{% url 'repository:owner:view' repository.owner_id %}">{{ repository.owner.name }}</a>
+                        {% else %}
+                        {{ repository.owner_name }}
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="panel-body">
+                    <dl>
+                        <dt>{% trans "Serial" %}:</dt>
+                        <dd>{{ repository.owner.serial }}</dd>
+                        <dt>{% trans "Address" %}:</dt>
+                        <dd>{{ repository.owner.address }}</dd>
+                        <dt>{% trans "Address line 2" %}:</dt>
+                        <dd>{{ repository.owner.address_line2 }}</dd>
+                        <dt>{% trans "Zip Code" %}:</dt>
+                        <dd>{{ repository.owner.zip_code }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#info-add-fix" role="tab" data-toggle="tab">{% trans "Add / Fix info" %}</a>
+                </li>
+                <li role="presentation">
+                    <a href="#violation-reports" role="tab" data-toggle="tab">{% trans "Violation reports" %}</a>
+                </li>
+                <li role="presentation">
+                    <a href="#original-owner-data" role="tab" data-toggle="tab">{% trans "Original Owner info" %}</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade in active" role="tabpanel" id="info-add-fix">
+                    <a class="btn btn-primary" role="button" data-toggle="collapse" href="#add-info-form">
+                        <i class="glyphicon glyphicon-plus">&nbsp;</i><span>{% trans "Add info" %}</span>
+                    </a>
+
+                    <div class="collapse" id="add-info-form">
+                        <form action="" method="post">
+                            <label for="add-info-subject">{% trans "Subject" %}</label>
+                            <input type="text" class="form-control" name="subject" id="add-info-subject">
+                            <label for="add-info-content">{% trans "Content" %}</label>
+                            <textarea class="form-control" name="content" id="add-info-content"></textarea>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-pane fade" role="tabpanel" id="violation-reports">Report violations</div>
+                <div class="tab-pane fade" role="tabpanel" id="original-owner-data">
                     <dl>
                         <dt>{% trans "Serial" %}:</dt>
                         <dd>{{ repository.owner_serial }}</dd>
@@ -44,27 +97,6 @@
                         <dd>{{ repository.city }}</dd>
                         <dt>{% trans "Zip Code" %}:</dt>
                         <dd>{{ repository.zip_code }}</dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        <a href="#">{{ repository.owner.name }}</a>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <dl>
-                        <dt>{% trans "Serial" %}:</dt>
-                        <dd>{{ repository.owner.serial }}</dd>
-                        <dt>{% trans "Address" %}:</dt>
-                        <dd>{{ repository.owner.address }}</dd>
-                        <dt>{% trans "Address line 2" %}:</dt>
-                        <dd>{{ repository.owner.address_line2 }}</dd>
-                        <dt>{% trans "Zip Code" %}:</dt>
-                        <dd>{{ repository.owner.zip_code }}</dd>
                     </dl>
                 </div>
             </div>
